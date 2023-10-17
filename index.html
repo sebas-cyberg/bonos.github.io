@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bono de un empleado</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif, sans-serif;
+            text-align: center;
+        }
+        h1 {
+            font-size: 24px;
+        }
+        button {
+            background-color: #16a06e;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #22816a;
+        }
+        table {
+            width: 80%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            border: 2px solid #020809;
+            border-radius: 5px;
+        }
+        th, td {
+            border: 1px solid  #030708;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #16a06e;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>PRESIONA EL BOTÓN PARA REGISTRAR EL BONO DE FIN DE AÑO DE LOS EMPLEADOS</h1>
+    <button onclick="agregarDatos()">REGISTRAR SALARIOS</button>
+    <br>
+    <br>
+    <table id="mitabla">
+        <tr>
+            <th>Nombre</th>
+            <th>Departamento</th>
+            <th>Sueldo</th>
+            <th>Antigüedad</th>
+            <th>Días trabajados</th>
+            <th>Subtotal</th>
+            <th>Bono</th>
+            <th>Total</th>
+        </tr>
+    </table>
+
+    <script type="text/javascript">
+        function agregarDatos() {
+            var nombre = prompt("Ingrese el nombre del empleado");
+            var departamento = prompt("Nombre del departamento asignado al empleado");
+            var sueldo_diario = parseFloat(prompt("Ingrese el sueldo diario del empleado"));
+            var antiguedad = parseInt(prompt("Ingrese la antiguedad del empleado"));
+            var dias_trabajados = parseInt(prompt("Ingrese los días trabajados del empleado"));
+            
+            var bono;
+            if (antiguedad >= 15) {
+                bono = (sueldo_diario * dias_trabajados) * 0.30;
+            } else {
+                bono = (sueldo_diario * dias_trabajados) * 0.15;
+            }
+
+            var subtotal = sueldo_diario *  dias_trabajados ;
+          
+            var total = subtotal + bono;
+
+            var table = document.getElementById("mitabla");
+            var row = table.insertRow(1); 
+
+            for (var i = 0; i < 8; i++) {
+                var cell = row.insertCell(i);
+                if (i === 0) {
+                    cell.innerHTML = nombre;
+                } else if (i === 1) {
+                    cell.innerHTML = departamento;
+                } else if (i === 2) {
+                    cell.innerHTML = sueldo_diario;
+                } else if (i === 3) {
+                    cell.innerHTML = antiguedad;
+                } else if (i === 4) {
+                    cell.innerHTML = dias_trabajados;
+                } else if (i === 5) {
+                    cell.innerHTML = subtotal;
+                } else if (i === 6) {
+                    cell.innerHTML = bono;
+                } else {
+                    cell.innerHTML = total;
+                }
+            }
+        }
+    </script>
+</body>
+</html>
